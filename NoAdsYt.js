@@ -10,8 +10,23 @@
 // @grant        none
 // ==/UserScript==
 
+// Function to check if the element is a video ad
+const isVideoAd = (element) => {
+  return (
+    element.classList.contains("video-ads") ||
+    element.classList.contains("ytp-ad-module") ||
+    element.classList.contains("ytp-ad-overlay-close-button") ||
+    element.classList.contains("ytp-ad-text") ||
+    element.classList.contains("ytp-ad-message-container")
+  );
+};
+
+// Function to remove ads
 const removeAds = () => {
-  const ad = document.querySelector(".video-ads.ytp-ad-module");
+  const ads = document.querySelectorAll(".video-ads, .ytp-ad-module");
+  ads.forEach((ad) => {
+    ad.style.display = "none";
+  });
 
   const closeButtons = document.querySelectorAll(".ytp-ad-overlay-close-button");
   closeButtons.forEach((button) => {
@@ -52,16 +67,18 @@ const removeAds = () => {
   }
 };
 
-// Create a MutationObserver to detect changes in the DOM
+// Create a MutationObserver to detect changes in specific elements related to video ads
 const observer = new MutationObserver((mutationsList) => {
   for (const mutation of mutationsList) {
-    if (mutation.type === "childList" || mutation.type === "subtree") {
-      if (document.querySelector(".video-stream.html5-main-video") !== null) {
+    if (mutation.type === "childList") {
+      const addedNodes = Array.from(mutation.addedNodes);
+      const hasVideoAd = addedNodes.some((node) => isVideoAd(node));
+      if (hasVideoAd) {
         removeAds();
       }
     }
   }
 });
 
-// Start observing changes in the DOM
+// Start observing changes in the DOM when a video is being played
 observer.observe(document.documentElement, { childList: true, subtree: true });

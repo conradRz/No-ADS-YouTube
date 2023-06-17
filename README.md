@@ -14,7 +14,6 @@ Skips all youtube ads  |  removes banner and sidebar ads | skips ads instantly
   <li>Works on sites with embedded youtube videos 😁</li><br>
   <li>This skips all types of ads & It skips instantly!! 😲</li><br>
   <li>This removes ads that come on the side and removes the incoming ad alert. 🙌</li><br>
-  <li>This skips unskippable ads by speeding up the video to a maximum playback rate of 16, (default 1) 💨</li><br>
   <li>This script works on all browsers and has been thoroughly tested 📝</li><br>
   <li>At the moment, this will take away custom playback functionality. In the next update, this will most likely be fixed. (FIXED in latest version) ⚠</li><br>
   <li>If you have any issues or recommendations please contact me 😁</li><br>
